@@ -1,6 +1,5 @@
 import pygame
-from __menus__.py import Abertura
-
+from menus import Abertura, Menu
 telaLargura = 800
 telaAltura = 600
 estado = 0
@@ -19,10 +18,8 @@ while True:
             estado = 9
     if estado == 0:
         estado = Abertura(tela)
-        pass
     elif estado == 1:
-        #estado = Menu()
-        pass
+        estado = Menu(tela)
     elif estado == 2:
         #estado = Configuração()
         pass
@@ -47,9 +44,6 @@ while True:
     elif estado == 9:
         #Sair
         break
-    pygame.display.update()
-    fps.tick(60)
-
 pygame.quit()
 exit()
 
