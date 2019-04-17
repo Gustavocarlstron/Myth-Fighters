@@ -1,13 +1,20 @@
 import pygame
 
+telaLargura = 800
+telaAltura = 600
+estado = 0
+
 try:
     pygame.init()
 except:
     print("O modulo pygame não foi iniciado com sucesso")
 
-estado = 0
+tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.DOUBLEBUF, 32)
 
 while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            estado = 9
     if estado == 0:
         #estado = Abertura()
         pass
@@ -34,6 +41,7 @@ while True:
         pass
     elif estado == 8:
         #estado = Pause()
+        pass
     elif estado == 9:
         #Sair
         break
