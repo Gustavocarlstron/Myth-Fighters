@@ -1,4 +1,5 @@
 import pygame
+from __menus__.py import Abertura
 
 telaLargura = 800
 telaAltura = 600
@@ -10,13 +11,14 @@ except:
     print("O modulo pygame não foi iniciado com sucesso")
 
 tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.DOUBLEBUF, 32)
+fps = pygame.time.Clock()
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             estado = 9
     if estado == 0:
-        #estado = Abertura()
+        estado = Abertura(tela)
         pass
     elif estado == 1:
         #estado = Menu()
@@ -45,7 +47,9 @@ while True:
     elif estado == 9:
         #Sair
         break
-
+    pygame.display.update()
+    fps.tick(60)
 
 pygame.quit()
 exit()
+
