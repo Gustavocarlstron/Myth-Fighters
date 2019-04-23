@@ -3,20 +3,30 @@ import random
 
 
 def Abertura(tela):
+    Preto = (0, 0, 0)
+    fontAbertura = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 30)
+    textoAbertura = fontAbertura.render("Aperte qualquer tecla para contiuar", True, Preto)
+
     for i in range(255):
         tela.fill((i, i, i))
         pygame.display.update()
+
+    while True:
+        tela.blit(textoAbertura, (200, 300))
+        pygame.display.update()
+        for i in range(10000):
+            pass
+        break
+
     return 1
 
 def Menu(tela):
     font = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 30)
     teste = font.render("TESTE", True, (100, 100, 100))
 
-    testeRect = teste.get_rect()
     testex = random.randint(0, 800)
     testey = random.randint(0, 600)
-    testeRect.x = testex
-    testeRect.y = testey
+    testeRect = TextRect(teste, testex, testey)
 
     while True:
         tela.fill((255, 255, 255))
@@ -25,14 +35,18 @@ def Menu(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 9
+
+            #Iniciar
             if testeRect.collidepoint(pygame.mouse.get_pos()):
                 font = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 40)
                 teste = font.render("TESTE", True, (100, 100, 100))
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     testex = random.randint(0, 800)
                     testey = random.randint(0, 600)
                     testeRect.x = testex
                     testeRect.y = testey
+
             else:
                 font = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 30)
                 teste = font.render("TESTE", True, (100, 100, 100))
@@ -44,3 +58,10 @@ def Menu(tela):
 
 #def Configuração():
 #def Credito():
+
+
+def TextRect(TextRender, x, y):
+    textRect = TextRender.get_rect()
+    textRect.x = x
+    textRect.y = y
+    return textRect
