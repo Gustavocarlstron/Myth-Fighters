@@ -12,13 +12,14 @@ def Abertura(tela):
         pygame.display.update()
 
     while True:
-        tela.blit(textoAbertura, (200, 300))
+        tela.blit(textoAbertura, (100, 300))
         pygame.display.update()
-        for i in range(10000):
-            pass
-        break
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return 9
+            if event.type == pygame.KEYDOWN:
+                return 1
 
-    return 1
 
 def Menu(tela):
     font = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 30)
