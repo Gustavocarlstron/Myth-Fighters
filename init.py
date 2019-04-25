@@ -1,5 +1,5 @@
 import pygame
-from menus import Abertura, Menu
+from menus import Abertura, Menu, Configuração, Credito
 telaLargura = 800
 telaAltura = 600
 estado = 0
@@ -21,10 +21,10 @@ while True:
     elif estado == 1:
         estado = Menu(tela)
     elif estado == 2:
-        #estado = Configuração()
+        estado = Configuração()
         pass
     elif estado == 3:
-        #estado = Credito()
+        estado = Credito()
         pass
     elif estado == 4:
         #estado = SelecionarPersonagem()
