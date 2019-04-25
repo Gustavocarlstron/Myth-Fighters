@@ -37,7 +37,7 @@ def Menu(tela):
             if btnIniciar.rect.collidepoint(pygame.mouse.get_pos()):
                 btnIniciar.img = btnIniciar.ativo
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    pass
+                    return 4
             else:
                 btnIniciar.img = btnIniciar.inativo
 
@@ -45,7 +45,7 @@ def Menu(tela):
             if btnConfiguracao.rect.collidepoint(pygame.mouse.get_pos()):
                 btnConfiguracao.img = btnConfiguracao.ativo
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    pass
+                    return 2
             else:
                 btnConfiguracao.img = btnConfiguracao.inativo
 
@@ -53,7 +53,7 @@ def Menu(tela):
             if btnCredito.rect.collidepoint(pygame.mouse.get_pos()):
                 btnCredito.img = btnCredito.ativo
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    pass
+                    return 3
             else:
                 btnCredito.img = btnCredito.inativo
 
@@ -61,7 +61,7 @@ def Menu(tela):
             if btnSair.rect.collidepoint(pygame.mouse.get_pos()):
                 btnSair.img = btnSair.ativo
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    pass
+                    return 9
             else:
                 btnSair.img = btnSair.inativo
 
@@ -73,9 +73,12 @@ def Menu(tela):
         pygame.display.update()
 
 
-#def Configuração():
-#def Credito():
-
+def Configuração():
+    print('Configuração não funcina ainda, voltar ao menu')
+    return 1
+def Credito():
+    print('Credito não funcina ainda, voltar ao menu')
+    return 1
 
 def TextRect(TextRender, x, y):
     textRect = TextRender.get_rect()
