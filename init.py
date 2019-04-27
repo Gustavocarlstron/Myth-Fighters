@@ -1,5 +1,7 @@
 import pygame
 from menus import Abertura, Menu, Configuração, Credito
+from selecao import SelecionarPersonagem
+
 telaLargura = 800
 telaAltura = 600
 estado = 0
@@ -27,7 +29,9 @@ while True:
         estado = Credito()
         pass
     elif estado == 4:
-        #estado = SelecionarPersonagem()
+        print("Selecionar Personagem ainda não funciona, voltar ao menu")
+        estado = 1
+        estado = SelecionarPersonagem()
         pass
     elif estado == 5:
         #estado = SelecionarFase()

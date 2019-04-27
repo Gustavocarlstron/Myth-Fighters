@@ -1,5 +1,4 @@
 import pygame
-import random
 
 
 def Abertura(tela):
@@ -22,10 +21,10 @@ def Abertura(tela):
 
 
 def Menu(tela):
-    btnIniciar = Botao("Botoes/botaoIniciar.png", "Botoes/botaoIniciarAtivo.png", 100, 300)
-    btnConfiguracao = Botao("Botoes/botaoConfiguracao.png", "Botoes/botaoConfiguracaoAtivo.png", 100, 350)
-    btnCredito = Botao("Botoes/botaoCredito.png", "Botoes/botaoCreditoAtivo.png", 100, 400)
-    btnSair = Botao("Botoes/botaoSair.png", "Botoes/botaoSairAtivo.png", 100, 450)
+    btnIniciar = Botao("Imagens/Botoes/botaoIniciar.png", "Imagens/Botoes/botaoIniciarAtivo.png", 100, 300)
+    btnConfiguracao = Botao("Imagens/Botoes/botaoConfiguracao.png", "Imagens/Botoes/botaoConfiguracaoAtivo.png", 100, 350)
+    btnCredito = Botao("Imagens/Botoes/botaoCredito.png", "Imagens/Botoes/botaoCreditoAtivo.png", 100, 400)
+    btnSair = Botao("Imagens/Botoes/botaoSair.png", "Imagens/Botoes/botaoSairAtivo.png", 100, 450)
 
     while True:
 
