@@ -96,7 +96,7 @@ class Botao(object):
     def __init__(self, inativo, ativo, x, y):
         self.inativo = pygame.image.load(inativo)
         self.ativo = pygame.image.load(ativo)
-        self.img = self.ativo
+        self.img = self.inativo
         self.rect = pygame.Rect((x, y), self.ativo.get_size())
         self.x = x
         self.y = y
