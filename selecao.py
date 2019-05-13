@@ -1,6 +1,6 @@
 import pygame
 from menus import Botao
-
+#resteasdasd
 selecionado = 0
 
 def SelecionarPersonagem(tela):
