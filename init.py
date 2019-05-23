@@ -29,7 +29,6 @@ while True:
     elif estado == 4:
         estado = SelecionarPersonagem(tela)
     elif estado == 5:
-        print("SelecionarFase ainda não funciona, voltar ao menu")
         estado = 1
         #estado = SelecionarFase()
         pass

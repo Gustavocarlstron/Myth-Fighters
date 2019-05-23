@@ -1,11 +1,13 @@
 import pygame
 from menus import Botao
-
-selecionado = 0
+import controles as key
+selectP1 = 1
+selectP2 = 1
 
 def SelecionarPersonagem(tela):
-
-    global selecionado
+    global selectP1, selectP2
+    Play1OK = True
+    Play2OK = True
 
     personagem1 = Botao("Imagens/RetratoPersonagens/personagem1.png",
                         "Imagens/RetratoPersonagens/personagem1Ativo.png",
@@ -31,83 +33,62 @@ def SelecionarPersonagem(tela):
     personagem8 = Botao("Imagens/RetratoPersonagens/personagem8.png",
                         "Imagens/RetratoPersonagens/personagem8Ativo.png",
                         700, 200)
-    while True:
+    while Play1OK or Play2OK:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 9
+            if event.type == pygame.KEYDOWN:
+                if selectP1 >= 1 and selectP1 <= 4:
+                    if event.key == key.P1Cima:
+                        selectP1 = selectP1 - 1
+                    elif event.key == key.P1Baixo:
+                        selectP1 = selectP1 + 1
+                #if event.key =
+                if selectP2 >= 1 and selectP2 <= 4:
+                    if event.key == key.P2Cima:
+                        selectP2 = selectP2 - 1
+                    if event.key == key.P2Baixo:
+                        selectP2 = selectP2 + 1
 
-            #Personagem 1
-            if personagem1.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem1.img = personagem1.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 1
-                    return 5
-            else:
-                personagem1.img = personagem1.inativo
+        if selectP1 < 1:
+            selectP1 = 1
+        elif selectP1 > 4:
+            selectP1 = 4
 
-            #Personagem 2
-            if personagem2.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem2.img = personagem2.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 2
-                    return 5
-            else:
-                personagem2.img = personagem2.inativo
+        if selectP2 < 1:
+            selectP2 = 1
+        elif selectP2 > 4:
+            selectP2 = 4
 
-            #Personagem 1
-            if personagem3.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem3.img = personagem3.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 3
-                    return 5
-            else:
-                personagem3.img = personagem3.inativo
+        personagem1.Inativo()
+        personagem2.Inativo()
+        personagem3.Inativo()
+        personagem4.Inativo()
+        personagem5.Inativo()
+        personagem6.Inativo()
+        personagem7.Inativo()
+        personagem8.Inativo()
 
-            #Personagem 4
-            if personagem4.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem4.img = personagem4.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 4
-                    return 5
-            else:
-                personagem4.img = personagem4.inativo
+        #Player1 Regras de seleção
+        if selectP1 == 1:
+            personagem5.Ativo()
+        elif selectP1 == 2:
+            personagem6.Ativo()
+        elif selectP1 == 3:
+            personagem7.Ativo()
+        elif selectP1 == 4:
+            personagem8.Ativo()
 
-            #Personagem 5
-            if personagem5.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem5.img = personagem5.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 5
-                    return 5
-            else:
-                personagem5.img = personagem5.inativo
-
-            #Personagem 6
-            if personagem6.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem6.img = personagem6.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 6
-                    return 5
-            else:
-                personagem6.img = personagem6.inativo
-
-            #Personagem 7
-            if personagem7.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem7.img = personagem7.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 7
-                    return 5
-            else:
-                personagem7.img = personagem7.inativo
-
-            #Personagem 8
-            if personagem8.rect.collidepoint(pygame.mouse.get_pos()):
-                personagem8.img = personagem8.ativo
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    selecionado = 8
-                    return 5
-            else:
-                personagem8.img = personagem8.inativo
+        #Player2 Regras de seleção
+        if selectP2 == 1:
+            personagem1.Ativo()
+        elif selectP2 == 2:
+            personagem2.Ativo()
+        elif selectP2 == 3:
+            personagem3.Ativo()
+        elif selectP2 == 4:
+            personagem4.Ativo()
 
         tela.fill((255, 255, 255))
 
@@ -120,3 +101,7 @@ def SelecionarPersonagem(tela):
         tela.blit(personagem7.img, (personagem7.x, personagem7.y))
         tela.blit(personagem8.img, (personagem8.x, personagem8.y))
         pygame.display.update()
+    return 5
+
+def SelecionarFase(tela):
+    pass

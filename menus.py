@@ -1,5 +1,5 @@
 import pygame
-
+import controles as key
 
 def Abertura(tela):
     Preto = (0, 0, 0)
@@ -32,37 +32,40 @@ def Menu(tela):
             if event.type == pygame.QUIT:
                 return 9
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == key.P1Cima:
+                    pass
             #Botão Iniciar
             if btnIniciar.rect.collidepoint(pygame.mouse.get_pos()):
-                btnIniciar.img = btnIniciar.ativo
+                btnIniciar.Ativo()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 4
             else:
-                btnIniciar.img = btnIniciar.inativo
+                btnIniciar.Inativo()
 
             #Botão Confiuração
             if btnConfiguracao.rect.collidepoint(pygame.mouse.get_pos()):
-                btnConfiguracao.img = btnConfiguracao.ativo
+                btnConfiguracao.Ativo()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 2
             else:
-                btnConfiguracao.img = btnConfiguracao.inativo
+                btnConfiguracao.Inativo()
 
             #Botão Credito
             if btnCredito.rect.collidepoint(pygame.mouse.get_pos()):
-                btnCredito.img = btnCredito.ativo
+                btnCredito.Ativo()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 3
             else:
-                btnCredito.img = btnCredito.inativo
+                btnCredito.Inativo()
 
             #Botão Sair
             if btnSair.rect.collidepoint(pygame.mouse.get_pos()):
-                btnSair.img = btnSair.ativo
+                btnSair.Ativo()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 9
             else:
-                btnSair.img = btnSair.inativo
+                btnSair.Inativo()
 
         tela.fill((255, 255, 255))
         tela.blit(btnIniciar.img, (btnIniciar.x, btnIniciar.y))
@@ -87,16 +90,22 @@ def TextRect(TextRender, x, y):
 
 class Botao(object):
     img = 0
-    inativo = 0
-    ativo = 0
+    inativoImg = 0
+    ativoImg = 0
     rect = 0
     x = 0
     y = 0
 
     def __init__(self, inativo, ativo, x, y):
-        self.inativo = pygame.image.load(inativo)
-        self.ativo = pygame.image.load(ativo)
-        self.img = self.inativo
-        self.rect = pygame.Rect((x, y), self.ativo.get_size())
+        self.inativoImg = pygame.image.load(inativo)
+        self.ativoImg = pygame.image.load(ativo)
+        self.img = self.inativoImg
+        self.rect = pygame.Rect((x, y), self.ativoImg.get_size())
         self.x = x
         self.y = y
+
+    def Ativo(self):
+        self.img = self.ativoImg
+
+    def Inativo(self):
+        self.img = self.inativoImg
