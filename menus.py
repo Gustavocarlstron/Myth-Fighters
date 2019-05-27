@@ -25,47 +25,65 @@ def Menu(tela):
     btnConfiguracao = Botao("Imagens/Botoes/botaoConfiguracao.png", "Imagens/Botoes/botaoConfiguracaoAtivo.png", 100, 350)
     btnCredito = Botao("Imagens/Botoes/botaoCredito.png", "Imagens/Botoes/botaoCreditoAtivo.png", 100, 400)
     btnSair = Botao("Imagens/Botoes/botaoSair.png", "Imagens/Botoes/botaoSairAtivo.png", 100, 450)
-
+    select = 0
+    espaco = [1, 4, 2, 3, 9]
     while True:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 9
-
+# Comandos teclado
             if event.type == pygame.KEYDOWN:
                 if event.key == key.P1Cima:
-                    pass
-            #Botão Iniciar
+                   select = select - 1
+                if event.key == key.P1Baixo:
+                   select = select + 1
+                if event.key == pygame.K_SPACE:
+                    return espaco[select]
+#
+# Comandos Mouse
+            # Botão Iniciar
             if btnIniciar.rect.collidepoint(pygame.mouse.get_pos()):
-                btnIniciar.Ativo()
+                select = 1
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 4
-            else:
-                btnIniciar.Inativo()
-
-            #Botão Confiuração
+            #
+            # Botão Confiuração
             if btnConfiguracao.rect.collidepoint(pygame.mouse.get_pos()):
-                btnConfiguracao.Ativo()
+                select = 2
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 2
-            else:
-                btnConfiguracao.Inativo()
-
-            #Botão Credito
+            #
+            # Botão Credito
             if btnCredito.rect.collidepoint(pygame.mouse.get_pos()):
-                btnCredito.Ativo()
+                select = 3
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 3
-            else:
-                btnCredito.Inativo()
-
-            #Botão Sair
+            #
+            # Botão Sair
             if btnSair.rect.collidepoint(pygame.mouse.get_pos()):
-                btnSair.Ativo()
+                select  = 4
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     return 9
-            else:
-                btnSair.Inativo()
+            #
+#
+
+        btnIniciar.Inativo()
+        btnConfiguracao.Inativo()
+        btnCredito.Inativo()
+        btnSair.Inativo()
+        if select == 1:
+            btnIniciar.Ativo()
+        elif select == 2:
+            btnConfiguracao.Ativo()
+        elif select == 3:
+            btnCredito.Ativo()
+        elif select == 4:
+            btnSair.Ativo()
+
+        if select < 0:
+            select = 0
+        elif select > 4:
+            select = 0
 
         tela.fill((255, 255, 255))
         tela.blit(btnIniciar.img, (btnIniciar.x, btnIniciar.y))
@@ -75,7 +93,7 @@ def Menu(tela):
         pygame.display.update()
 
 
-def Configuração():
+def Configuracao():
     print('Configuração não funcina ainda, voltar ao menu')
     return 1
 def Credito():
