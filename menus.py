@@ -38,7 +38,9 @@ def Menu(tela):
                 if event.key == key.P1Baixo:
                    select = select + 1
                 if event.key == pygame.K_SPACE:
+                    print(event.key)
                     return espaco[select]
+                print(event.key)
 #
 # Comandos Mouse
             # Botão Iniciar
@@ -71,6 +73,7 @@ def Menu(tela):
         btnConfiguracao.Inativo()
         btnCredito.Inativo()
         btnSair.Inativo()
+
         if select == 1:
             btnIniciar.Ativo()
         elif select == 2:
@@ -81,7 +84,7 @@ def Menu(tela):
             btnSair.Ativo()
 
         if select < 0:
-            select = 0
+            select = 4
         elif select > 4:
             select = 0
 
