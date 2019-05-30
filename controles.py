@@ -1,5 +1,3 @@
-import pygame
-
 config = open("config/config.cfg").read()
 linha = ""
 linhas = []
@@ -10,6 +8,7 @@ for i in config:
     else:
         linhas.append(linha)
         linha = ""
+linhas.append(linha)
 
 P1Cima = int(linhas[0])
 P1Baixo = int(linhas[1])
@@ -28,4 +27,3 @@ P2SocoFraco = int(linhas[12])
 P2SocoForte = int(linhas[13])
 P2ChuteBaixo = int(linhas[14])
 P2ChuteAlto = int(linhas[15])
-
