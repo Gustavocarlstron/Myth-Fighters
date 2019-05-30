@@ -4,10 +4,14 @@ import controles as key
 selectP1 = 1
 selectP2 = 1
 
+
 def SelecionarPersonagem(tela):
     global selectP1, selectP2
     Play1OK = True
     Play2OK = True
+    x, y = 0, 0
+
+    seletorP1 = pygame.image.load("Imagens/RetratoPersonagens/select.png")
 
     personagem1 = Botao("Imagens/RetratoPersonagens/personagem1.png",
                         "Imagens/RetratoPersonagens/personagem1Ativo.png",
@@ -38,18 +42,20 @@ def SelecionarPersonagem(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 9
+
             if event.type == pygame.KEYDOWN:
                 if selectP1 >= 1 and selectP1 <= 4:
                     if event.key == key.P1Cima:
                         selectP1 = selectP1 - 1
                     elif event.key == key.P1Baixo:
                         selectP1 = selectP1 + 1
-                #if event.key =
+
                 if selectP2 >= 1 and selectP2 <= 4:
                     if event.key == key.P2Cima:
                         selectP2 = selectP2 - 1
                     if event.key == key.P2Baixo:
                         selectP2 = selectP2 + 1
+
 
         if selectP1 < 1:
             selectP1 = 1
@@ -72,13 +78,18 @@ def SelecionarPersonagem(tela):
 
         #Player1 Regras de seleção
         if selectP1 == 1:
-            personagem5.Ativo()
+            x = personagem5.GetX()
+            y = personagem5.GetY()
         elif selectP1 == 2:
             personagem6.Ativo()
+            x = personagem6.GetX()
+            y = personagem6.GetY()
         elif selectP1 == 3:
-            personagem7.Ativo()
+            x = personagem7.GetX()
+            y = personagem7.GetY()
         elif selectP1 == 4:
-            personagem8.Ativo()
+            x = personagem7.GetX()
+            y = personagem7.GetY()
 
         #Player2 Regras de seleção
         if selectP2 == 1:
@@ -100,6 +111,7 @@ def SelecionarPersonagem(tela):
         tela.blit(personagem6.img, (personagem6.x, personagem6.y))
         tela.blit(personagem7.img, (personagem7.x, personagem7.y))
         tela.blit(personagem8.img, (personagem8.x, personagem8.y))
+        tela.blit(seletorP1, (x, y))
         pygame.display.update()
     return 5
 

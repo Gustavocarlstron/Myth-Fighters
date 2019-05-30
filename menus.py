@@ -130,3 +130,8 @@ class Botao(object):
 
     def Inativo(self):
         self.img = self.inativoImg
+
+    def GetX(self):
+        return self.x
+    def GetY(self):
+        return self.y
