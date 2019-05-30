@@ -1,5 +1,5 @@
 import pygame
-from menus import Botao
+from Botao import Botao
 import controles as key
 selectP1 = 1
 selectP2 = 1
