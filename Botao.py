@@ -24,5 +24,6 @@ class Botao(object):
 
     def GetX(self):
         return self.x
+    
     def GetY(self):
         return self.y
