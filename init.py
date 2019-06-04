@@ -1,6 +1,6 @@
 import pygame
 from menus import Abertura, Menu, Configuracao, Credito
-from selecao import SelecionarPersonagem
+from selecao import SelecionarPersonagem, SelecionarFase
 
 telaLargura = 1366
 telaAltura = 768
@@ -28,24 +28,19 @@ def init():
         elif estado == 1:
             estado = Menu(tela)
         elif estado == 2:
-            estado = Configuracao()
+            estado = Configuracao(tela)
         elif estado == 3:
-            estado = Credito()
+            estado = Credito(tela)
         elif estado == 4:
             estado = SelecionarPersonagem(tela)
         elif estado == 5:
-            estado = 1
-            #estado = SelecionarFase()
-            pass
+            estado = SelecionarFase(tela)
         elif estado == 6:
-            #estado = Luta()
-            pass
+            estado = Luta(tela)
         elif estado == 7:
-            #estado = FimLuta()
-            pass
+            estado = FimLuta(tela)
         elif estado == 8:
-            #estado = Pause()
-            pass
+            estado = Pause(tela)
         elif estado == 9:
             Sair()
 
