@@ -39,6 +39,16 @@ def SelecionarPersonagem(tela):
     personagem8 = Botao("Imagens/RetratoPersonagens/personagem8.png",
                         "Imagens/RetratoPersonagens/personagem8Ativo.png",
                         700, 200)
+    personagens = [0,
+                   personagem1,
+                   personagem2,
+                   personagem3,
+                   personagem4,
+                   personagem5,
+                   personagem6,
+                   personagem7,
+                   personagem8
+                   ]
     while Play1OK or Play2OK:
 
         for event in pygame.event.get():
@@ -60,6 +70,8 @@ def SelecionarPersonagem(tela):
                                 selectP1 = selectP1 + 4
                         if event.key == key.P1SocoFraco:
                             Play1OK = False
+                            personagens[selectP1].Ativo()
+
                 if Play2OK:
                     if selectP2 >= 1 and selectP2 <= 8:
                         if event.key == key.P2Cima:
@@ -74,6 +86,7 @@ def SelecionarPersonagem(tela):
                                 selectP2 = selectP2 + 4
                         if event.key == key.P2SocoFraco:
                             Play2OK = False
+                            personagens[selectP2].Ativo()
 
         if selectP1 < 1:
             selectP1 = 1
@@ -85,66 +98,6 @@ def SelecionarPersonagem(tela):
         elif selectP2 > 8:
             selectP2 = 8
 
-        personagem1.Inativo()
-        personagem2.Inativo()
-        personagem3.Inativo()
-        personagem4.Inativo()
-        personagem5.Inativo()
-        personagem6.Inativo()
-        personagem7.Inativo()
-        personagem8.Inativo()
-
-        #Player1 Regras de seleção
-        if selectP1 == 1:
-            x1 = personagem1.GetX()
-            y1 = personagem1.GetY()
-        elif selectP1 == 2:
-            x1 = personagem2.GetX()
-            y1 = personagem2.GetY()
-        elif selectP1 == 3:
-            x1 = personagem3.GetX()
-            y1 = personagem3.GetY()
-        elif selectP1 == 4:
-            x1 = personagem4.GetX()
-            y1 = personagem4.GetY()
-        elif selectP1 == 5:
-            x1 = personagem5.GetX()
-            y1 = personagem5.GetY()
-        elif selectP1 == 6:
-            x1 = personagem6.GetX()
-            y1 = personagem6.GetY()
-        elif selectP1 == 7:
-            x1 = personagem7.GetX()
-            y1 = personagem7.GetY()
-        elif selectP1 == 8:
-            x1 = personagem8.GetX()
-            y1 = personagem8.GetY()
-
-        #Player2 Regras de seleção
-        if selectP2 == 1:
-            x2 = personagem1.GetX()
-            y2 = personagem1.GetY()
-        elif selectP2 == 2:
-            x2 = personagem2.GetX()
-            y2 = personagem2.GetY()
-        elif selectP2 == 3:
-            x2 = personagem3.GetX()
-            y2 = personagem3.GetY()
-        elif selectP2 == 4:
-            x2 = personagem4.GetX()
-            y2 = personagem4.GetY()
-        elif selectP2 == 5:
-            x2 = personagem5.GetX()
-            y2 = personagem5.GetY()
-        elif selectP2 == 6:
-            x2 = personagem6.GetX()
-            y2 = personagem6.GetY()
-        elif selectP2 == 7:
-            x2 = personagem7.GetX()
-            y2 = personagem7.GetY()
-        elif selectP2 == 8:
-            x2 = personagem8.GetX()
-            y2 = personagem8.GetY()
 
         tela.fill((255, 255, 255))
 
@@ -156,8 +109,8 @@ def SelecionarPersonagem(tela):
         tela.blit(personagem6.img, (personagem6.x, personagem6.y))
         tela.blit(personagem7.img, (personagem7.x, personagem7.y))
         tela.blit(personagem8.img, (personagem8.x, personagem8.y))
-        tela.blit(seletorP1, (x1, y1))
-        tela.blit(seletorP2, (x2, y2))
+        tela.blit(seletorP1, (personagens[selectP1].GetX(), personagens[selectP1].GetY()))
+        tela.blit(seletorP2, (personagens[selectP2].GetX(), personagens[selectP2].GetY()))
         pygame.display.update()
     return 5
 
