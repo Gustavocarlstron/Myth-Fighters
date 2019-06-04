@@ -46,30 +46,34 @@ def SelecionarPersonagem(tela):
                 return 9
 
             if event.type == pygame.KEYDOWN:
-                if selectP1 >= 1 and selectP1 <= 8:
-                    if event.key == key.P1Cima:
-                        selectP1 = selectP1 - 1
-                    if event.key == key.P1Baixo:
-                        selectP1 = selectP1 + 1
-                    if event.key == key.P1Esquerda:
-                        if not(selectP1 - 4 < 1):
-                            selectP1 = selectP1 - 4
-                    if event.key == key.P1Direita:
-                        if not(selectP1 + 4 > 8):
-                            selectP1 = selectP1 + 4
-
-                if selectP2 >= 1 and selectP2 <= 8:
-                    if event.key == key.P2Cima:
-                        selectP2 = selectP2 - 1
-                    if event.key == key.P2Baixo:
-                        selectP2 = selectP2 + 1
-                    if event.key == key.P2Esquerda:
-                        if not(selectP2 - 4 < 1):
-                            selectP2 = selectP2 - 4
-                    if event.key == key.P2Direita:
-                        if not(selectP2 + 4 > 8):
-                            selectP2 = selectP2 + 4
-
+                if Play1OK:
+                    if selectP1 >= 1 and selectP1 <= 8:
+                        if event.key == key.P1Cima:
+                            selectP1 = selectP1 - 1
+                        if event.key == key.P1Baixo:
+                            selectP1 = selectP1 + 1
+                        if event.key == key.P1Esquerda:
+                            if not(selectP1 - 4 < 1):
+                                selectP1 = selectP1 - 4
+                        if event.key == key.P1Direita:
+                            if not(selectP1 + 4 > 8):
+                                selectP1 = selectP1 + 4
+                        if event.key == key.P1SocoFraco:
+                            Play1OK = False
+                if Play2OK:
+                    if selectP2 >= 1 and selectP2 <= 8:
+                        if event.key == key.P2Cima:
+                            selectP2 = selectP2 - 1
+                        if event.key == key.P2Baixo:
+                            selectP2 = selectP2 + 1
+                        if event.key == key.P2Esquerda:
+                            if not(selectP2 - 4 < 1):
+                                selectP2 = selectP2 - 4
+                        if event.key == key.P2Direita:
+                            if not(selectP2 + 4 > 8):
+                                selectP2 = selectP2 + 4
+                        if event.key == key.P2SocoFraco:
+                            Play2OK = False
 
         if selectP1 < 1:
             selectP1 = 1
@@ -158,4 +162,5 @@ def SelecionarPersonagem(tela):
     return 5
 
 def SelecionarFase(tela):
-    pass
+    print('SelecionarFase não funcina ainda, voltar ao menu')
+    return 1

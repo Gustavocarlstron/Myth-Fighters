@@ -2,8 +2,8 @@ import pygame
 from menus import Abertura, Menu, Configuracao, Credito
 from selecao import SelecionarPersonagem
 
-telaLargura = 800
-telaAltura = 600
+telaLargura = 1366
+telaAltura = 768
 estado = 0
 
 
@@ -14,7 +14,7 @@ except:
     print("O modulo pygame não foi iniciado com sucesso")
 
 
-tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.DOUBLEBUF, 32)
+tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.FULLSCREEN, 32)
 fps = pygame.time.Clock()
 
 def init():
@@ -24,7 +24,7 @@ def init():
             if event.type == pygame.QUIT:
                 estado = 9
         if estado == 0:
-            estado = Abertura(tela)
+            estado = Abertura(tela, telaLargura, telaAltura)
         elif estado == 1:
             estado = Menu(tela)
         elif estado == 2:

@@ -2,17 +2,20 @@ import pygame
 import controles as key
 from Botao import Botao
 
-def Abertura(tela):
-    Preto = (0, 0, 0)
+def Abertura(tela, telaLargura, telaAltura):
+    CorLetra = (255, 0, 0)
+    imgIntro = pygame.image.load("Imagens/INTRO.jpg")
+    imgIntro = pygame.transform.scale(imgIntro, (telaLargura, telaAltura))
     fontAbertura = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 30)
-    textoAbertura = fontAbertura.render("Aperte qualquer tecla para contiuar", True, Preto)
+    textoAbertura = fontAbertura.render("Aperte qualquer tecla para contiuar", True, CorLetra)
 
     for i in range(255):
         tela.fill((i, i, i))
         pygame.display.update()
 
     while True:
-        tela.blit(textoAbertura, (100, 300))
+        tela.blit(imgIntro, (0, 0))
+        tela.blit(textoAbertura, (telaLargura/2-280, telaAltura/2+100))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
