@@ -26,7 +26,7 @@ def init():
         if estado == 0:
             estado = Abertura(tela, telaLargura, telaAltura)
         elif estado == 1:
-            estado = Menu(tela)
+            estado = Menu(tela, telaLargura, telaAltura)
         elif estado == 2:
             estado = Configuracao(tela)
         elif estado == 3:

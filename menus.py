@@ -2,6 +2,22 @@ import pygame
 import controles as key
 from Botao import Botao
 
+
+def NaoFuncionaAinda(tela, texto):
+    CorLetra = (255, 255, 255)
+    font = pygame.font.Font('Fontes/TlwgTypist-Bold.ttf', 20)
+    textoRender = font.render(texto + " não funciona ainda, Aperte qualquer tecla para continuar", True, CorLetra)
+
+    while True:
+        tela.fill((0, 0, 0))
+        tela.blit(textoRender, (0, 0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return 9
+            if event.type == pygame.KEYDOWN:
+                return 1
+
 def Abertura(tela, telaLargura, telaAltura):
     CorLetra = (255, 0, 0)
     imgIntro = pygame.image.load("Imagens/INTRO.jpg")
@@ -24,7 +40,8 @@ def Abertura(tela, telaLargura, telaAltura):
                 return 1
 
 
-def Menu(tela):
+def Menu(tela, telaLargura, telaAltura):
+    fundo = pygame.transform.scale(pygame.image.load("Imagens/INTRO.jpg"), (telaLargura, telaAltura))
     btnIniciar = Botao("Imagens/Botoes/botaoIniciar.png", "Imagens/Botoes/botaoIniciarAtivo.png", 100, 300)
     btnConfiguracao = Botao("Imagens/Botoes/botaoConfiguracao.png", "Imagens/Botoes/botaoConfiguracaoAtivo.png", 100, 350)
     btnCredito = Botao("Imagens/Botoes/botaoCredito.png", "Imagens/Botoes/botaoCreditoAtivo.png", 100, 400)
@@ -42,9 +59,7 @@ def Menu(tela):
                 if event.key == key.P1Baixo:
                    select = select + 1
                 if event.key == pygame.K_SPACE:
-                    print(event.key)
                     return espaco[select]
-                print(event.key)
 #
 # Comandos Mouse
             # Botão Iniciar
@@ -92,7 +107,7 @@ def Menu(tela):
         elif select > 4:
             select = 0
 
-        tela.fill((255, 255, 255))
+        tela.blit(fundo, (0, 0))
         tela.blit(btnIniciar.img, (btnIniciar.x, btnIniciar.y))
         tela.blit(btnConfiguracao.img, (btnConfiguracao.x, btnConfiguracao.y))
         tela.blit(btnCredito.img, (btnCredito.x, btnCredito.y))
@@ -100,15 +115,14 @@ def Menu(tela):
         pygame.display.update()
 
 
-def Configuracao():
-    print('Configuração não funcina ainda, voltar ao menu')
-    return 1
-def Credito():
-    print('Credito não funcina ainda, voltar ao menu')
-    return 1
+def Configuracao(tela):
+    return NaoFuncionaAinda(tela, "Configuração")
+def Credito(tela):
+    return NaoFuncionaAinda(tela, "Credito")
 
 def TextRect(TextRender, x, y):
     textRect = TextRender.get_rect()
     textRect.x = x
     textRect.y = y
     return textRect
+

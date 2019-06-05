@@ -1,4 +1,5 @@
 import pygame
+from menus import NaoFuncionaAinda
 from Botao import Botao
 import controles as key
 selectP1 = 5
@@ -39,7 +40,7 @@ def SelecionarPersonagem(tela):
     personagem8 = Botao("Imagens/RetratoPersonagens/personagem8.png",
                         "Imagens/RetratoPersonagens/personagem8Ativo.png",
                         700, 200)
-    personagens = [0,
+    personagens = [
                    personagem1,
                    personagem2,
                    personagem3,
@@ -57,32 +58,32 @@ def SelecionarPersonagem(tela):
 
             if event.type == pygame.KEYDOWN:
                 if Play1OK:
-                    if selectP1 >= 1 and selectP1 <= 8:
+                    if selectP1 >= 0 and selectP1 <= 7:
                         if event.key == key.P1Cima:
                             selectP1 = selectP1 - 1
                         if event.key == key.P1Baixo:
                             selectP1 = selectP1 + 1
                         if event.key == key.P1Esquerda:
-                            if not(selectP1 - 4 < 1):
+                            if not(selectP1 - 4 < 0):
                                 selectP1 = selectP1 - 4
                         if event.key == key.P1Direita:
-                            if not(selectP1 + 4 > 8):
+                            if not(selectP1 + 4 > 7):
                                 selectP1 = selectP1 + 4
                         if event.key == key.P1SocoFraco:
                             Play1OK = False
                             personagens[selectP1].Ativo()
 
                 if Play2OK:
-                    if selectP2 >= 1 and selectP2 <= 8:
+                    if selectP2 >= 0 and selectP2 <= 7:
                         if event.key == key.P2Cima:
                             selectP2 = selectP2 - 1
                         if event.key == key.P2Baixo:
                             selectP2 = selectP2 + 1
                         if event.key == key.P2Esquerda:
-                            if not(selectP2 - 4 < 1):
+                            if not(selectP2 - 4 < 0):
                                 selectP2 = selectP2 - 4
                         if event.key == key.P2Direita:
-                            if not(selectP2 + 4 > 8):
+                            if not(selectP2 + 4 > 7):
                                 selectP2 = selectP2 + 4
                         if event.key == key.P2SocoFraco:
                             Play2OK = False
@@ -101,19 +102,21 @@ def SelecionarPersonagem(tela):
 
         tela.fill((255, 255, 255))
 
-        tela.blit(personagem1.img, (personagem1.x, personagem1.y))
-        tela.blit(personagem2.img, (personagem2.x, personagem2.y))
-        tela.blit(personagem3.img, (personagem3.x, personagem3.y))
-        tela.blit(personagem4.img, (personagem4.x, personagem4.y))
-        tela.blit(personagem5.img, (personagem5.x, personagem5.y))
-        tela.blit(personagem6.img, (personagem6.x, personagem6.y))
-        tela.blit(personagem7.img, (personagem7.x, personagem7.y))
-        tela.blit(personagem8.img, (personagem8.x, personagem8.y))
+        for n in personagens:
+            tela.blit(personagens[n].img, (personagens[n].x, personagens[n].y))
+            tela.blit(personagem1.img, (personagem1.x, personagem1.y))
+            tela.blit(personagem2.img, (personagem2.x, personagem2.y))
+            tela.blit(personagem3.img, (personagem3.x, personagem3.y))
+            tela.blit(personagem4.img, (personagem4.x, personagem4.y))
+            tela.blit(personagem5.img, (personagem5.x, personagem5.y))
+            tela.blit(personagem6.img, (personagem6.x, personagem6.y))
+            tela.blit(personagem7.img, (personagem7.x, personagem7.y))
+            tela.blit(personagem8.img, (personagem8.x, personagem8.y)
         tela.blit(seletorP1, (personagens[selectP1].GetX(), personagens[selectP1].GetY()))
         tela.blit(seletorP2, (personagens[selectP2].GetX(), personagens[selectP2].GetY()))
         pygame.display.update()
     return 5
 
 def SelecionarFase(tela):
-    print('SelecionarFase não funcina ainda, voltar ao menu')
-    return 1
+
+    return NaoFuncionaAinda(tela, "Selecionar fase")
