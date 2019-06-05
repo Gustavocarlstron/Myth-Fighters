@@ -1,19 +1,12 @@
 import pygame
-from Botao import Botao
-import controles as key
-selectP1 = 5
-selectP2 = 1
+from menus import Botao
 
+selectP1Personagem = 0
+selectP2Personagem = 0
 
 def SelecionarPersonagem(tela):
-    global selectP1, selectP2
-    Play1OK = True
-    Play2OK = True
-    x1, y1 = 0, 0
-    x2, y2 = 0, 0
-
-    seletorP1 = pygame.image.load("Imagens/RetratoPersonagens/select.png")
-    seletorP2 = pygame.image.load("Imagens/RetratoPersonagens/select2.png")
+    selecionado = 0
+    global selectP1,selectP2
 
     personagem1 = Botao("Imagens/RetratoPersonagens/personagem1.png",
                         "Imagens/RetratoPersonagens/personagem1Ativo.png",
@@ -39,65 +32,83 @@ def SelecionarPersonagem(tela):
     personagem8 = Botao("Imagens/RetratoPersonagens/personagem8.png",
                         "Imagens/RetratoPersonagens/personagem8Ativo.png",
                         700, 200)
-    personagens = [0,
-                   personagem1,
-                   personagem2,
-                   personagem3,
-                   personagem4,
-                   personagem5,
-                   personagem6,
-                   personagem7,
-                   personagem8
-                   ]
-    while Play1OK or Play2OK:
+    while True:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 9
 
-            if event.type == pygame.KEYDOWN:
-                if Play1OK:
-                    if selectP1 >= 1 and selectP1 <= 8:
-                        if event.key == key.P1Cima:
-                            selectP1 = selectP1 - 1
-                        if event.key == key.P1Baixo:
-                            selectP1 = selectP1 + 1
-                        if event.key == key.P1Esquerda:
-                            if not(selectP1 - 4 < 1):
-                                selectP1 = selectP1 - 4
-                        if event.key == key.P1Direita:
-                            if not(selectP1 + 4 > 8):
-                                selectP1 = selectP1 + 4
-                        if event.key == key.P1SocoFraco:
-                            Play1OK = False
-                            personagens[selectP1].Ativo()
+            #Personagem 1
+            if personagem1.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem1.img = personagem1.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 1
+                    return 5
+            else:
+                personagem1.img = personagem1.inativo
 
-                if Play2OK:
-                    if selectP2 >= 1 and selectP2 <= 8:
-                        if event.key == key.P2Cima:
-                            selectP2 = selectP2 - 1
-                        if event.key == key.P2Baixo:
-                            selectP2 = selectP2 + 1
-                        if event.key == key.P2Esquerda:
-                            if not(selectP2 - 4 < 1):
-                                selectP2 = selectP2 - 4
-                        if event.key == key.P2Direita:
-                            if not(selectP2 + 4 > 8):
-                                selectP2 = selectP2 + 4
-                        if event.key == key.P2SocoFraco:
-                            Play2OK = False
-                            personagens[selectP2].Ativo()
+            #Personagem 2
+            if personagem2.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem2.img = personagem2.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 2
+                    return 5
+            else:
+                personagem2.img = personagem2.inativo
 
-        if selectP1 < 1:
-            selectP1 = 1
-        elif selectP1 > 8:
-            selectP1 = 8
+            #Personagem 1
+            if personagem3.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem3.img = personagem3.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 3
+                    return 5
+            else:
+                personagem3.img = personagem3.inativo
 
-        if selectP2 < 1:
-            selectP2 = 1
-        elif selectP2 > 8:
-            selectP2 = 8
+            #Personagem 4
+            if personagem4.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem4.img = personagem4.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 4
+                    return 5
+            else:
+                personagem4.img = personagem4.inativo
 
+            #Personagem 5
+            if personagem5.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem5.img = personagem5.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 5
+                    return 5
+            else:
+                personagem5.img = personagem5.inativo
+
+            #Personagem 6
+            if personagem6.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem6.img = personagem6.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 6
+                    return 5
+            else:
+                personagem6.img = personagem6.inativo
+
+            #Personagem 7
+            if personagem7.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem7.img = personagem7.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 7
+                    return 5
+            else:
+                personagem7.img = personagem7.inativo
+
+            #Personagem 8
+            if personagem8.rect.collidepoint(pygame.mouse.get_pos()):
+                personagem8.img = personagem8.ativo
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    selecionado = 8
+                    return 5
+            else:
+                personagem8.img = personagem8.inativo
 
         tela.fill((255, 255, 255))
 
@@ -109,11 +120,8 @@ def SelecionarPersonagem(tela):
         tela.blit(personagem6.img, (personagem6.x, personagem6.y))
         tela.blit(personagem7.img, (personagem7.x, personagem7.y))
         tela.blit(personagem8.img, (personagem8.x, personagem8.y))
-        tela.blit(seletorP1, (personagens[selectP1].GetX(), personagens[selectP1].GetY()))
-        tela.blit(seletorP2, (personagens[selectP2].GetX(), personagens[selectP2].GetY()))
         pygame.display.update()
-    return 5
+
 
 def SelecionarFase(tela):
-    print('SelecionarFase não funcina ainda, voltar ao menu')
-    return 1
+    pass

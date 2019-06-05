@@ -1,54 +1,51 @@
 import pygame
-from menus import Abertura, Menu, Configuracao, Credito
-from selecao import SelecionarPersonagem, SelecionarFase
+from menus import Abertura, Menu, Configuração, Credito
+from selecao import SelecionarPersonagem
 
-telaLargura = 1366
-telaAltura = 768
+telaLargura = 1920
+telaAltura = 1080
 estado = 0
-
-
 
 try:
     pygame.init()
 except:
     print("O modulo pygame não foi iniciado com sucesso")
 
+tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.DOUBLEBUF, 32)
 
-tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.FULLSCREEN, 32)
 fps = pygame.time.Clock()
 
-def init():
-    global estado, tela
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                estado = 9
-        if estado == 0:
-            estado = Abertura(tela, telaLargura, telaAltura)
-        elif estado == 1:
-            estado = Menu(tela)
-        elif estado == 2:
-            estado = Configuracao(tela)
-        elif estado == 3:
-            estado = Credito(tela)
-        elif estado == 4:
-            estado = SelecionarPersonagem(tela)
-        elif estado == 5:
-            estado = SelecionarFase(tela)
-        elif estado == 6:
-            estado = Luta(tela)
-        elif estado == 7:
-            estado = FimLuta(tela)
-        elif estado == 8:
-            estado = Pause(tela)
-        elif estado == 9:
-            Sair()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            estado = 9
+    if estado == 0:
+        estado = Abertura(tela)
+    elif estado == 1:
+        estado = Menu(tela)
+    elif estado == 2:
+        estado = Configuração()
+    elif estado == 3:
+        estado = Credito()
+    elif estado == 4:
+        estado = SelecionarPersonagem(tela)
+    elif estado == 5:
+        print("SelecionarFase ainda não funciona, voltar ao menu")
+        estado = 1
+        #estado = SelecionarFase()
+        pass
+    elif estado == 6:
+        #estado = Luta()
+        pass
+    elif estado == 7:
+        #estado = FimLuta()
+        pass
+    elif estado == 8:
+        #estado = Pause()
+        pass
+    elif estado == 9:
+        #Sair
+        break
+pygame.quit()
+exit()
 
-def Sair():
-    pygame.quit()
-    exit()
-
-
-
-if __name__ == "__main__":
-    init()
