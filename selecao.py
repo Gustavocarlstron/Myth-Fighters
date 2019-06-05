@@ -102,16 +102,9 @@ def SelecionarPersonagem(tela):
 
         tela.fill((255, 255, 255))
 
-        for n in personagens:
-            tela.blit(personagens[n].img, (personagens[n].x, personagens[n].y))
-            tela.blit(personagem1.img, (personagem1.x, personagem1.y))
-            tela.blit(personagem2.img, (personagem2.x, personagem2.y))
-            tela.blit(personagem3.img, (personagem3.x, personagem3.y))
-            tela.blit(personagem4.img, (personagem4.x, personagem4.y))
-            tela.blit(personagem5.img, (personagem5.x, personagem5.y))
-            tela.blit(personagem6.img, (personagem6.x, personagem6.y))
-            tela.blit(personagem7.img, (personagem7.x, personagem7.y))
-            tela.blit(personagem8.img, (personagem8.x, personagem8.y)
+        for personagem in personagens:
+            tela.blit(personagem.img, (personagem.x, personagem.y))
+
         tela.blit(seletorP1, (personagens[selectP1].GetX(), personagens[selectP1].GetY()))
         tela.blit(seletorP2, (personagens[selectP2].GetX(), personagens[selectP2].GetY()))
         pygame.display.update()
