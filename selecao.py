@@ -1,6 +1,7 @@
 import pygame
 from menus import NaoFuncionaAinda
 from Botao import Botao
+from personagens import Personagem as p
 import controles as key
 selectP1 = 5
 selectP2 = 1
@@ -111,5 +112,17 @@ def SelecionarPersonagem(tela):
     return 5
 
 def SelecionarFase(tela):
+    fps = pygame.time.Clock()
+    naru = p("naru")
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                return 1
+        for n in naru.walk:
+            tela.fill((255, 255, 255))
+            tela.blit(n, (0, 0))
+            pygame.display.update()
+            fps.tick(3)
 
     return NaoFuncionaAinda(tela, "Selecionar fase")

@@ -2,8 +2,8 @@ import pygame
 from menus import Abertura, Menu, Configuracao, Credito
 from selecao import SelecionarPersonagem, SelecionarFase
 
-telaLargura = 1366
-telaAltura = 768
+telaLargura = 1920
+telaAltura = 1080
 estado = 0
 
 
