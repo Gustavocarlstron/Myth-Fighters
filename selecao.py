@@ -1,5 +1,4 @@
 import pygame
-from menus import NaoFuncionaAinda
 from Botao import Botao
 from personagens import Personagem as p
 import controles as key
@@ -112,17 +111,46 @@ def SelecionarPersonagem(tela):
     return 5
 
 def SelecionarFase(tela):
+    return 6
+
+
+def Luta(tela):
+    tela.fill((255, 255, 255))
+    pygame.display.flip()
     fps = pygame.time.Clock()
     naru = p("naru")
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                return 1
-        for n in naru.walk:
-            tela.fill((255, 255, 255))
-            tela.blit(n, (0, 0))
-            pygame.display.update()
-            fps.tick(3)
+                if event.key == key.P1Cima:
+                    naru.Pula()
+                if event.key == key.P1Baixo:
+                    naru.Abaixa()
+                if event.key == key.P1Esquerda:
+                    naru.Tras()
+                if event.key == key.P1Direita:
+                    naru.Frente()
+                if event.key == key.P1SocoFraco:
+                    return 1
 
-    return NaoFuncionaAinda(tela, "Selecionar fase")
+            if event.type == pygame.KEYUP:
+                if event.key == key.P1Cima:
+                    naru.Pula()
+                if event.key == key.P1Baixo:
+                    naru.Abaixa()
+                if event.key == key.P1Esquerda:
+                    naru.Tras()
+                if event.key == key.P1Direita:
+                    naru.Frente()
+                if event.key == key.P1SocoFraco:
+                   return 1
+
+        naru.update()
+        tela.fill((255, 255, 255))
+        tela.blit(naru.image, (naru.x, naru.y))
+        pygame.display.update(naru.GetRect(naru.image))
+
+
+        fps.tick(9)
+
