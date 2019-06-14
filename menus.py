@@ -42,10 +42,10 @@ def Abertura(tela, telaLargura, telaAltura):
 
 def Menu(tela, telaLargura, telaAltura):
     fundo = pygame.transform.scale(pygame.image.load("Imagens/INTRO.jpg"), (telaLargura, telaAltura))
-    btnIniciar = Botao("Imagens/Botoes/botaoIniciar.png", "Imagens/Botoes/botaoIniciarAtivo.png", 100, 300)
-    btnConfiguracao = Botao("Imagens/Botoes/botaoConfiguracao.png", "Imagens/Botoes/botaoConfiguracaoAtivo.png", 100, 350)
-    btnCredito = Botao("Imagens/Botoes/botaoCredito.png", "Imagens/Botoes/botaoCreditoAtivo.png", 100, 400)
-    btnSair = Botao("Imagens/Botoes/botaoSair.png", "Imagens/Botoes/botaoSairAtivo.png", 100, 450)
+    btnIniciar = Botao("Iniciar", 100, 300)
+    btnConfiguracao = Botao("Configuracao", 100, 350)
+    btnCredito = Botao("Credito", 100, 400)
+    btnSair = Botao("Sair", 100, 450)
     select = 0
     espaco = [1, 4, 2, 3, 9]
     while True:

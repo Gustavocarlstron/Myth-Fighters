@@ -1,5 +1,5 @@
 import pygame
-from Botao import Botao
+from Botao import Retrato
 from personagens import Personagem as p
 import controles as key
 
@@ -17,30 +17,14 @@ def SelecionarPersonagem(tela):
     seletorP1 = pygame.image.load("Imagens/RetratoPersonagens/select.png")
     seletorP2 = pygame.image.load("Imagens/RetratoPersonagens/select2.png")
 
-    personagem1 = Botao("Imagens/RetratoPersonagens/personagem1.png",
-                        "Imagens/RetratoPersonagens/personagem1Ativo.png",
-                        50, 50)
-    personagem2 = Botao("Imagens/RetratoPersonagens/personagem2.png",
-                        "Imagens/RetratoPersonagens/personagem2Ativo.png",
-                        50, 100)
-    personagem3 = Botao("Imagens/RetratoPersonagens/personagem3.png",
-                        "Imagens/RetratoPersonagens/personagem3Ativo.png",
-                        50, 150)
-    personagem4 = Botao("Imagens/RetratoPersonagens/personagem4.png",
-                        "Imagens/RetratoPersonagens/personagem4Ativo.png",
-                        50, 200)
-    personagem5 = Botao("Imagens/RetratoPersonagens/personagem5.png",
-                        "Imagens/RetratoPersonagens/personagem5Ativo.png",
-                        700, 50)
-    personagem6 = Botao("Imagens/RetratoPersonagens/personagem6.png",
-                        "Imagens/RetratoPersonagens/personagem6Ativo.png",
-                        700, 100)
-    personagem7 = Botao("Imagens/RetratoPersonagens/personagem7.png",
-                        "Imagens/RetratoPersonagens/personagem7Ativo.png",
-                        700, 150)
-    personagem8 = Botao("Imagens/RetratoPersonagens/personagem8.png",
-                        "Imagens/RetratoPersonagens/personagem8Ativo.png",
-                        700, 200)
+    personagem1 = Retrato("personagem1", 50, 50)
+    personagem2 = Retrato("personagem2", 50, 100)
+    personagem3 = Retrato("personagem3", 50, 150)
+    personagem4 = Retrato("personagem4", 50, 200)
+    personagem5 = Retrato("personagem5", 700, 50)
+    personagem6 = Retrato("personagem6", 700, 100)
+    personagem7 = Retrato("personagem7", 700, 150)
+    personagem8 = Retrato("personagem8", 700, 200)
     personagens = [
         personagem1,
         personagem2,
