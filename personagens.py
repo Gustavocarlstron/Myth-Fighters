@@ -21,6 +21,7 @@ class Personagem(object):
     strongPunchDown = [False]
     strongPunchIdle = [False]
     walk = [False]
+    golpe = 0
 
     velocidade = 20
     image = pygame.image.load("GameFiles/Imagens/Sprites/move.LuckyGlauber/Levantando_2_Round/Lucky Glauber_184.png")
@@ -80,6 +81,8 @@ class Personagem(object):
         return self.image.get_height()
 
     def Back(self):
+        if self.walk[0]:
+            self.walk[0] = False
         if self.back[0]:
             self.back[0] = False
         else:
@@ -128,101 +131,151 @@ class Personagem(object):
             self.idle[0] = True
 
     def Jump(self):
-        if self.jump[0]:
-            self.jump[0] = False
-        else:
-            self.jump[0] = True
+        self.jump[0] = True
 
     def KickDown(self):
-        if self.kickDown[0]:
-            self.kickDown[0] = False
-        else:
-            self.kickDown[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 1
 
     def KickIdle(self):
-        if self.kickIdle[0]:
-            self.kickIdle[0] = False
-        else:
-            self.kickIdle[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 2
 
     def PunchDown(self):
-        if self.punchDown[0]:
-            self.punchDown[0] = False
-        else:
-            self.punchDown[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 3
 
     def PunchIdle(self):
-        if self.punchIdle[0]:
-            self.punchIdle[0] = False
-        else:
-            self.punchIdle[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 4
 
     def StrongKickDown(self):
-        if self.strongKickDown[0]:
-            self.strongKickDown[0] = False
-        else:
-            self.strongKickDown[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 5
 
     def StrongKickIdle(self):
-        if self.strongKickIdle[0]:
-            self.strongKickIdle[0] = False
-        else:
-            self.strongKickIdle[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 6
 
     def StrongPunchDown(self):
-        if self.strongPunchDown[0]:
-            self.strongPunchDown[0] = False
-        else:
-            self.strongPunchDown[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 7
 
     def StrongPunchIdle(self):
-        if self.StrongPunchIdle()[0]:
-            self.StrongPunchIdle()[0] = False
-        else:
-            self.StrongPunchIdle()[0] = True
+        if self.golpe == 0:
+            self.i = 0
+            self.golpe = 8
 
     def Walk(self):
+        if self.back[0]:
+            self.back[0] = False
         if self.walk[0]:
             self.walk[0] = False
         else:
             self.walk[0] = True
 
     def update(self):
-        if self.andaDireita:
-            self.x += self.velocidade
+        if self.golpe == 0:
+            if self.walk[0]:
+                try:
+                    self.image = self.walk[self.i]
+                    self.i += 1
+                except:
+                    self.image = self.walk[1]
+                    self.i = 1
 
-        if self.andaEsquerda:
-            self.x -= self.velocidade
+            if self.back[0]:
+                try:
+                    self.image = self.back[self.i]
+                    self.i += 1
+                except:
+                    self.image = self.back[1]
+                    self.i = 1
 
-        if self.walk[0]:
-            try:
-                self.image = self.walk[self.i]
-                self.i += 1
-            except:
-                self.image = self.walk[1]
+            if self.down[0]:
                 self.i = 1
+                try:
+                    self.i += 1
+                    self.image = self.down[self.i]
+                except:
+                    self.image = self.down[self.i]
 
-        if self.back[0]:
-            try:
-                self.image = self.back[self.i]
-                self.i += 1
-            except:
-                self.image = self.back[1]
-                self.i = 1
+            if not self.back[0] and not self.walk[0] and not self.down[0]:
+                try:
+                    self.image = self.idle[self.i]
+                    self.i += 1
+                except:
+                    self.image = self.idle[1]
+                    self.i = 1
 
-        if self.down[0]:
-            self.i = 1
-            try:
-                self.i += 1
-                self.image = self.down[self.i]
-            except:
-                self.image = self.down[self.i]
+            if self.andaDireita:
+                self.x += self.velocidade
 
-        if not self.back[0] and not self.walk[0] and not self.down[0]:
+            if self.andaEsquerda:
+                self.x -= self.velocidade
+
+
+        elif self.golpe == 1: #KickDown
             try:
-                self.image = self.idle[self.i]
                 self.i += 1
+                self.image = self.kickDown[self.i]
             except:
-                self.image = self.idle[1]
-                self.i = 1
+                self.golpe = 0
+
+        elif self.golpe == 2: #KickIdle
+            try:
+                self.i += 1
+                self.image = self.kickIdle[self.i]
+            except:
+                self.golpe = 0
+
+        elif self.golpe == 3: #PunchDown
+            try:
+                self.i += 1
+                self.image = self.punchDown[self.i]
+            except:
+                self.golpe = 0
+
+        elif self.golpe == 4: #PunchIdle
+            try:
+                self.i += 1
+                self.image = self.punchIdle[self.i]
+            except:
+                self.golpe = 0
+
+        elif self.golpe == 5: #StrongKickDown
+            try:
+                self.i += 1
+                self.image = self.strongKickDown[self.i]
+            except:
+                self.golpe = 0
+
+        elif self.golpe == 6: #StrongKickIdle
+            try:
+                self.i += 1
+                self.image = self.strongKickIdle[self.i]
+            except:
+                self.golpe = 0
+
+        elif self.golpe == 7: #StrongPuchDown
+            try:
+                self.i += 1
+                self.image = self.strongPunchDown[self.i]
+            except:
+                self.golpe = 0
+
+        elif self.golpe == 8: #StrongPuchIdle
+            try:
+                self.i += 1
+                self.image = self.strongPunchIdle[self.i]
+            except:
+                self.golpe = 0
+
 
