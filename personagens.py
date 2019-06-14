@@ -1,7 +1,8 @@
 import pygame
 
 class Personagem(object):
-
+    andaDireita = False
+    andaEsquerda = False
     back = [False]
     blockDown = [False]
     blockIdle = [False]
@@ -22,18 +23,15 @@ class Personagem(object):
     walk = [False]
 
     velocidade = 20
-    frente = False
-    tras =  False
-    Pula = False
-    image = 0
+    image = pygame.image.load("GameFiles/Imagens/Sprites/move.LuckyGlauber/Levantando_2_Round/Lucky Glauber_184.png")
 
     x = 0
-    y = 0
+    y = 700
     i = 1
 
     def loadMove(self, nome, nomeMove):
-        move = []
-        for i in range(1, 10):
+        move = [False]
+        for i in range(1, 20):
             try:
                 move.append(pygame.image.load(f"GameFiles/Imagens/Sprites/move.{nome}/{nomeMove}/{i}.png"))
             except:
@@ -60,9 +58,26 @@ class Personagem(object):
         self.strongPunchIdle = self.loadMove(nome, "strongPuchIdle")
         self.walk = self.loadMove(nome, "walk")
 
+    def AndaDireita(self):
+        if self.andaDireita:
+            self.andaDireita = False
+        else:
+            self.andaDireita = True
 
-    def GetRect(self, image):
-        return pygame.Rect((self.x, self.y), image.get_size())
+    def AndaEsquerda(self):
+        if self.andaEsquerda:
+            self.andaEsquerda = False
+        else:
+            self.andaEsquerda = True
+
+    def GetRect(self):
+        return pygame.Rect((self.x, self.y), self.image.get_size())
+
+    def GetWidth(self):
+        return self.image.get_width()
+
+    def GetHeight(self):
+        return self.image.get_height()
 
     def Back(self):
         if self.back[0]:
@@ -125,7 +140,7 @@ class Personagem(object):
             self.kickDown[0] = True
 
     def KickIdle(self):
-        if self.kickIdle]:
+        if self.kickIdle[0]:
             self.kickIdle[0] = False
         else:
             self.kickIdle[0] = True
@@ -173,8 +188,13 @@ class Personagem(object):
             self.walk[0] = True
 
     def update(self):
-        if self.walk:
+        if self.andaDireita:
             self.x += self.velocidade
+
+        if self.andaEsquerda:
+            self.x -= self.velocidade
+
+        if self.walk[0]:
             try:
                 self.image = self.walk[self.i]
                 self.i += 1
@@ -182,24 +202,23 @@ class Personagem(object):
                 self.image = self.walk[1]
                 self.i = 1
 
-        if self.back:
-            self.x -= self.velocidade
+        if self.back[0]:
             try:
                 self.image = self.back[self.i]
-                self.i -= 1
+                self.i += 1
             except:
-                self.image = self.back[len(self.walk)-1]
-                self.i = len(self.back)-1
+                self.image = self.back[1]
+                self.i = 1
 
         if self.down[0]:
             self.i = 1
             try:
-                self.image = self.down[0]
                 self.i += 1
+                self.image = self.down[self.i]
             except:
-                self.i -=1
+                self.image = self.down[self.i]
 
-        if not self.back[0] and not self.walk[0] and not down[0]:
+        if not self.back[0] and not self.walk[0] and not self.down[0]:
             try:
                 self.image = self.idle[self.i]
                 self.i += 1
