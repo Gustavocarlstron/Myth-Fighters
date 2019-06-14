@@ -1,9 +1,9 @@
 import pygame
 from menus import Abertura, Menu, Configuracao, Credito
-from selecao import SelecionarPersonagem, SelecionarFase
+from selecao import SelecionarPersonagem, SelecionarFase, Luta
 
-telaLargura = 1920
-telaAltura = 1080
+telaLargura = 1366#1920
+telaAltura = 768#1080
 estado = 0
 
 
@@ -15,7 +15,6 @@ except:
 
 
 tela = pygame.display.set_mode((telaLargura, telaAltura), pygame.FULLSCREEN, 32)
-fps = pygame.time.Clock()
 
 def init():
     global estado, tela
@@ -47,8 +46,6 @@ def init():
 def Sair():
     pygame.quit()
     exit()
-
-
 
 if __name__ == "__main__":
     init()
