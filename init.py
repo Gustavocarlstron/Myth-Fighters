@@ -35,7 +35,7 @@ def init():
         elif estado == 5:
             estado = SelecionarFase(tela)
         elif estado == 6:
-            estado = Luta(tela)
+            estado = Luta(tela, "LuckGlauber", "Yuri")
         elif estado == 7:
             estado = FimLuta(tela)
         elif estado == 8:
