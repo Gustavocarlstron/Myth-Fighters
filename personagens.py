@@ -11,29 +11,37 @@ class Personagem(object):
 
     x = 0
     y = 0
-
-    i=0
-
-
+    i = 0
 
     def __init__(self, nome):
-        for i in range(1, 4):
-            self.stand.append(pygame.image.load(f"GameFiles/Imagens/Sprites/Move.{nome}/mov.stand/{i}.png"))
-        for i in range(1,8):
-            self.walk.append(pygame.image.load(f"GameFiles/Imagens/Sprites/Move.{nome}/mov.walk/PASSO{i}.png"))
+
+        for i in range(1, 10):
+            try:
+                self.stand.append(pygame.image.load(f"GameFiles/Imagens/Sprites/Move.{nome}/mov.stand/{i}.png"))
+            except:
+                break
+
+        for i in range(1, 10):
+            try:
+                self.walk.append(pygame.image.load(f"GameFiles/Imagens/Sprites/Move.{nome}/mov.walk/PASSO{i}.png"))
+            except:
+                break
 
     def GetRect(self, image):
         return pygame.Rect((self.x, self.y), image.get_size())
 
     def Pula(self):
         pass
+
     def Abaixa(self):
         pass
+
     def Frente(self):
         if self.frente:
             self.frente = False
         else:
             self.frente = True
+
     def Tras(self):
         if self.tras:
             self.tras = False
