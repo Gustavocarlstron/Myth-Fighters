@@ -2,6 +2,7 @@ import pygame
 from Botao import Botao
 from personagens import Personagem as p
 import controles as key
+
 selectP1 = 5
 selectP2 = 1
 
@@ -27,7 +28,7 @@ def SelecionarPersonagem(tela):
                         50, 150)
     personagem4 = Botao("Imagens/RetratoPersonagens/personagem4.png",
                         "Imagens/RetratoPersonagens/personagem4Ativo.png",
-                        50,200)
+                        50, 200)
     personagem5 = Botao("Imagens/RetratoPersonagens/personagem5.png",
                         "Imagens/RetratoPersonagens/personagem5Ativo.png",
                         700, 50)
@@ -41,15 +42,15 @@ def SelecionarPersonagem(tela):
                         "Imagens/RetratoPersonagens/personagem8Ativo.png",
                         700, 200)
     personagens = [
-                   personagem1,
-                   personagem2,
-                   personagem3,
-                   personagem4,
-                   personagem5,
-                   personagem6,
-                   personagem7,
-                   personagem8
-                   ]
+        personagem1,
+        personagem2,
+        personagem3,
+        personagem4,
+        personagem5,
+        personagem6,
+        personagem7,
+        personagem8
+    ]
     while Play1OK or Play2OK:
 
         for event in pygame.event.get():
@@ -64,10 +65,10 @@ def SelecionarPersonagem(tela):
                         if event.key == key.P1Baixo:
                             selectP1 = selectP1 + 1
                         if event.key == key.P1Esquerda:
-                            if not(selectP1 - 4 < 0):
+                            if not (selectP1 - 4 < 0):
                                 selectP1 = selectP1 - 4
                         if event.key == key.P1Direita:
-                            if not(selectP1 + 4 > 7):
+                            if not (selectP1 + 4 > 7):
                                 selectP1 = selectP1 + 4
                         if event.key == key.P1SocoFraco:
                             Play1OK = False
@@ -80,10 +81,10 @@ def SelecionarPersonagem(tela):
                         if event.key == key.P2Baixo:
                             selectP2 = selectP2 + 1
                         if event.key == key.P2Esquerda:
-                            if not(selectP2 - 4 < 0):
+                            if not (selectP2 - 4 < 0):
                                 selectP2 = selectP2 - 4
                         if event.key == key.P2Direita:
-                            if not(selectP2 + 4 > 7):
+                            if not (selectP2 + 4 > 7):
                                 selectP2 = selectP2 + 4
                         if event.key == key.P2SocoFraco:
                             Play2OK = False
@@ -99,7 +100,6 @@ def SelecionarPersonagem(tela):
         elif selectP2 > 8:
             selectP2 = 8
 
-
         tela.fill((255, 255, 255))
 
         for personagem in personagens:
@@ -110,17 +110,24 @@ def SelecionarPersonagem(tela):
         pygame.display.update()
     return 5
 
+
 def SelecionarFase(tela):
     return 6
 
 
 def Luta(tela):
-    tela.fill((255, 255, 255))
+    fundo_e = False
+    fundo_d = False
+    fundo_y = -200
+    fundo_x = -680
+    fundo = pygame.image.load("GameFiles/Imagens/Telas/Tela salvador.jpg")
+    tela.blit(fundo, (fundo_x, fundo_y))
     pygame.display.flip()
     fps = pygame.time.Clock()
     naru = p("naru")
 
     while True:
+        naru_tamanho = 613
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == key.P1Cima:
@@ -129,8 +136,10 @@ def Luta(tela):
                     naru.Abaixa()
                 if event.key == key.P1Esquerda:
                     naru.Tras()
+                    fundo_e = True
                 if event.key == key.P1Direita:
                     naru.Frente()
+                    fundo_d = True
                 if event.key == key.P1SocoFraco:
                     return 1
 
@@ -141,16 +150,37 @@ def Luta(tela):
                     naru.Abaixa()
                 if event.key == key.P1Esquerda:
                     naru.Tras()
+                    fundo_e = False
+                    naru.velocidade = 20
                 if event.key == key.P1Direita:
                     naru.Frente()
+                    fundo_d = False
+                    naru.velocidade = 20
                 if event.key == key.P1SocoFraco:
-                   return 1
+                    return 1
+
+
+
+        if naru.x < 0 and fundo_e:
+            if fundo_x < 0:
+                fundo_x = fundo_x + 20
+                tela.blit(fundo, (fundo_x, fundo_y))
+                pygame.display.flip()
+            naru.velocidade = 0
+
+        if naru.x >= 1366 - naru_tamanho and fundo_d:
+            if fundo_x > -2490:
+                fundo_x = fundo_x - 20
+                tela.blit(fundo, (fundo_x, fundo_y))
+                pygame.display.flip()
+            naru.velocidade = 0
+        print(fundo_x)
 
         naru.update()
-        tela.fill((255, 255, 255))
+        tela.blit(fundo, (fundo_x, fundo_y))
         tela.blit(naru.image, (naru.x, naru.y))
         pygame.display.update(naru.GetRect(naru.image))
 
 
-        fps.tick(9)
 
+        fps.tick(9)
